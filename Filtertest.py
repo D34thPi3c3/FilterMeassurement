@@ -1,3 +1,5 @@
+# coding: utf8
+
 """
 Create:       08.01.2018
 @Autor:       Rafael Eberle
@@ -5,6 +7,9 @@ Company:      TBSafety AG
 Edit by:  
 Edit Date:
 """
+#Import Backend Stuff because otherwise it doesnt work on Raspberry
+import os
+os.environ['KIVY_GL_BACKEND'] = 'gl'
 
 #Import Stuff for Kivy (GUI_TOOL)
 from kivy.app import App
@@ -99,7 +104,7 @@ Builder.load_string("""
             Image:
                 id: image_press_meas
                 size_hint: 0.3, 1
-                source: 'white.jpg'
+                source: 'picture/white.jpg'
             
         Label:
             spacing: 10
