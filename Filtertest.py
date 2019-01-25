@@ -197,7 +197,7 @@ class SummaryScreen(Screen):
 class PressureMeasurementScreen(Screen):
     startmeassurement = False
     def start_meassurement(self):
-        if platform.system() == 'Linux':
+        if platform.system() == 'nux':
             bus.write_byte()
         else:    
             self.status.text = "Status: 100%"
