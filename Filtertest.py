@@ -31,6 +31,9 @@ import time
 #I2C adressen Definieren
 PRESSURE_MEAS_ADDRESS = 0x10
 FLOW_MEAS_ADRESS = 0x11
+START_MEAS = 0x0A
+STOP_MEAS = 0x14
+STATUS_MEAS = 0x1E
 
 #If you're screen has a bigger Resolution than 800x480
 #use this raspysetup
@@ -197,8 +200,13 @@ class SummaryScreen(Screen):
 class PressureMeasurementScreen(Screen):
     startmeassurement = False
     def start_meassurement(self):
+<<<<<<< HEAD
         if platform.system() == 'nux':
             bus.write_byte()
+=======
+        if platform.system() == 'Linux':
+            bus.write_byte(PRESSURE_MEAS_ADDRESS,)
+>>>>>>> b94446759a7a6019e7a823fd7f728b4d81aab921
         else:    
             self.status.text = "Status: 100%"
             self.startmeassurement = True
