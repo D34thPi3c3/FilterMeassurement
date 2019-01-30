@@ -20,6 +20,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.config import Config
+from kivy.properties import ObjectProperty
 #from kivy.core.window import Window
 
 #Import other Important stuff:
@@ -104,10 +105,6 @@ Builder.load_string("""
             pos: 190, 440
             multiline: False
             on_text_validate: configscreen.textinput_selected('min_height')
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 260, 440
-            group: 'select_input'
         Label:
             text: 'max'
             size_hint: 0.075, 0.1
@@ -121,6 +118,12 @@ Builder.load_string("""
             on_text_validate: configscreen.textinput_selected('max_height')
         CheckBox:
             size_hint: 0.05, 0.07
+            value: root.min_fillHeight
+            pos: 260, 440
+            group: 'select_input'
+        CheckBox:
+            size_hint: 0.05, 0.07
+            value: root.max_fillHeight
             pos: 420, 440
             group: 'select_input'
             
@@ -147,6 +150,16 @@ Builder.load_string("""
             text: '004'
             size_hint: 0.1, 0.06
             pos: 350, 392
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 392
+            value: root.min_force
+            group: 'select_input'
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 392
+            value: root.max_force
+            group: 'select_input'
         
         ## Unterdruck Motor eingabe
         Label:
@@ -171,6 +184,16 @@ Builder.load_string("""
             text: '004'
             size_hint: 0.1, 0.06
             pos: 350, 344
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 344
+            value: root.min_pressureMotor
+            group: 'select_input'
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 344
+            value: root.max_pressureMotor
+            group: 'select_input'
         
         ## Durchfluss eingabe
         Label:
@@ -195,6 +218,16 @@ Builder.load_string("""
             text: '004'
             size_hint: 0.1, 0.06
             pos: 350, 296
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 296
+            value: root.min_flow
+            group: 'select_input'
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 296
+            value: root.max_flow
+            group: 'select_input'
         
         ## Druckverlust eingabe
         Label:
@@ -211,10 +244,6 @@ Builder.load_string("""
             size_hint: 0.1, 0.06
             pos: 190, 248
             valign: 'middle'
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 260, 248
-            group: 'select_input'
         Label:
             text: 'max'
             size_hint: 0.075, 0.1
@@ -225,7 +254,13 @@ Builder.load_string("""
             pos: 350, 248
         CheckBox:
             size_hint: 0.05, 0.07
-            pos: 0, 248
+            pos: 260, 248
+            value: root.min_pressureloss
+            group: 'select_input'
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 248
+            value: root.max_pressureloss
             group: 'select_input'
             
         ## Eingabe Feld
@@ -461,12 +496,28 @@ class EndMeasurementScreen(Screen):
     pass
 
 class ConfigScreen(Screen):
+    
+    #This is for the Radio Buttons, that has to be selected
+    min_fillHeight = ObjectProperty(False) 
+    max_fillHeight = ObjectProperty(True)
+    min_force = ObjectProperty(False)
+    max_force = ObjectProperty(False)
+    min_pressureMotor = ObjectProperty(False)
+    max_pressureMotor = ObjectProperty(False)
+    min_flow = ObjectProperty(False)
+    max_flow = ObjectProperty(False)
+    min_pressureloss = ObjectProperty(False)
+    max_pressureloss = ObjectProperty(False)
+    
     def textinput_selected(self, selectedti):
         textinputselected = selectedti
         self.add_number(textinputselected)
     
     def add_number(self, number):
-        self.min_height.text += number
+        if self.min_fillHeight == True:
+            self.min_height.text += number
+        elif self.max_fillHeight == True:
+            self.max_height.text += number
     
     def delete_number(self):
         self.min_height.text = self.min_height.text[:-1]
