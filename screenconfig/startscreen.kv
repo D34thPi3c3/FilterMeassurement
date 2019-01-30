@@ -1,0 +1,26 @@
+<StartScreen>:
+    BoxLayout:
+        padding: 10
+        spacing: 10      
+        orientation: 'horizontal'
+        CustButton:
+            text: 'Start Messung'
+            on_press: 
+                root.manager.transition.direction = 'left'
+                root.manager.transition.duration = 0.25
+                root.manager.current = 'filterpressuremeasurement'
+            
+        BoxLayout:
+            orientation: 'vertical'
+            CustButton:   
+                text: 'Gemessene Filter'
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'filtersummary'
+            CustButton:
+                text: 'Config ändern'
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'config'

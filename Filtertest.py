@@ -55,415 +55,15 @@ textinputselected = 'min_height'
 Builder.load_string("""
 <CustButton@Button>:
     font_size: 20
-                        
-
-<StartScreen>:
-    BoxLayout:
-        padding: 10
-        spacing: 10      
-        orientation: 'horizontal'
-        CustButton:
-            text: 'Start Messung'
-            on_press: 
-                root.manager.transition.direction = 'left'
-                root.manager.transition.duration = 0.25
-                root.manager.current = 'filterpressuremeasurement'
-            
-        BoxLayout:
-            orientation: 'vertical'
-            CustButton:   
-                text: 'Gemessene Filter'
-                on_press:
-                    root.manager.transition.direction = 'left'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'filtersummary'
-            CustButton:
-                text: 'Config ändern'
-                on_press:
-                    root.manager.transition.direction = 'left'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'config'
-<ConfigScreen>:
-    id: configscreen
-    min_height: min_height
-    max_height: max_height
-    FloatLayout:
-        ## Füll Höhe Einbabe
-        Label:
-            text: 'Füll Höhe:'
-            size_hint: 0.18, 0.1
-            pos: 0, 432
-            halign: 'right'
-        Label:
-            text: 'min'
-            size_hint: 0.075, 0.1 
-            pos: 130, 432 
-        TextInput:
-            id: min_height
-            text: '000'
-            size_hint: 0.1, 0.06
-            pos: 190, 440
-            multiline: False
-            on_text_validate: configscreen.textinput_selected('min_height')
-        Label:
-            text: 'max'
-            size_hint: 0.075, 0.1
-            pos: 290, 432
-        TextInput:
-            id: max_height
-            text: '004'
-            size_hint: 0.1, 0.06
-            pos: 350, 440
-            multiline: False
-            on_text_validate: configscreen.textinput_selected('max_height')
-        CheckBox:
-            size_hint: 0.05, 0.07
-            value: root.min_fillHeight
-            pos: 260, 440
-            group: 'select_input'
-        CheckBox:
-            size_hint: 0.05, 0.07
-            value: root.max_fillHeight
-            pos: 420, 440
-            group: 'select_input'
-            
-        ## Kraft eingabe
-        Label:
-            text: 'Kraft [N]:'
-            size_hint: 0.18, 0.1
-            pos: 0, 384
-            halign: 'right'
-        Label:
-            text: 'min'
-            size_hint: 0.075, 0.1 
-            pos: 130, 384
-        TextInput:
-            text: '000'
-            size_hint: 0.1, 0.06
-            pos: 190, 392
-            valign: 'middle'
-        Label:
-            text: 'max'
-            size_hint: 0.075, 0.1
-            pos: 290, 384
-        TextInput:
-            text: '004'
-            size_hint: 0.1, 0.06
-            pos: 350, 392
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 260, 392
-            value: root.min_force
-            group: 'select_input'
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 420, 392
-            value: root.max_force
-            group: 'select_input'
-        
-        ## Unterdruck Motor eingabe
-        Label:
-            text: 'Udruck Motor [mbar]:'
-            size_hint: 0.18, 0.1
-            pos: 0, 336
-            halign: 'right'
-        Label:
-            text: 'min'
-            size_hint: 0.075, 0.1 
-            pos: 130, 336
-        TextInput:
-            text: '000'
-            size_hint: 0.1, 0.06
-            pos: 190, 344
-            valign: 'middle'
-        Label:
-            text: 'max'
-            size_hint: 0.075, 0.1
-            pos: 290, 336
-        TextInput:
-            text: '004'
-            size_hint: 0.1, 0.06
-            pos: 350, 344
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 260, 344
-            value: root.min_pressureMotor
-            group: 'select_input'
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 420, 344
-            value: root.max_pressureMotor
-            group: 'select_input'
-        
-        ## Durchfluss eingabe
-        Label:
-            text: 'Durchfluss [l/min]:'
-            size_hint: 0.18, 0.1
-            pos: 0, 288
-            halign: 'right'
-        Label:
-            text: 'min'
-            size_hint: 0.075, 0.1 
-            pos: 130, 288
-        TextInput:
-            text: '000'
-            size_hint: 0.1, 0.06
-            pos: 190, 296
-            valign: 'middle'
-        Label:
-            text: 'max'
-            size_hint: 0.075, 0.1
-            pos: 290, 288
-        TextInput:
-            text: '004'
-            size_hint: 0.1, 0.06
-            pos: 350, 296
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 260, 296
-            value: root.min_flow
-            group: 'select_input'
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 420, 296
-            value: root.max_flow
-            group: 'select_input'
-        
-        ## Druckverlust eingabe
-        Label:
-            text: 'Druckverlust [mbar]:'
-            size_hint: 0.18, 0.1
-            pos: 0, 240
-            halign: 'right'
-        Label:
-            text: 'min'
-            size_hint: 0.075, 0.1 
-            pos: 130, 240
-        TextInput:
-            text: '000'
-            size_hint: 0.1, 0.06
-            pos: 190, 248
-            valign: 'middle'
-        Label:
-            text: 'max'
-            size_hint: 0.075, 0.1
-            pos: 290, 240
-        TextInput:
-            text: '004'
-            size_hint: 0.1, 0.06
-            pos: 350, 248
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 260, 248
-            value: root.min_pressureloss
-            group: 'select_input'
-        CheckBox:
-            size_hint: 0.05, 0.07
-            pos: 420, 248
-            value: root.max_pressureloss
-            group: 'select_input'
-            
-        ## Eingabe Feld
-        CustButton:
-            text: '1'
-            size_hint: 0.1125, 0.1875
-            pos: 465, 360
-            on_press: configscreen.add_number('1')
-        CustButton:
-            text: '2'
-            size_hint: 0.1125, 0.1875
-            pos: 560, 360
-            on_press: configscreen.add_number('2')
-        CustButton:
-            text: '3'
-            size_hint: 0.1125, 0.1875
-            pos: 655, 360
-            on_press: configscreen.add_number('3')
-        CustButton:
-            text: '4'
-            size_hint: 0.1125, 0.1875
-            pos: 465, 265
-            on_press: configscreen.add_number('4')
-        CustButton:
-            text: '5'
-            size_hint: 0.1125, 0.1875
-            pos: 560, 265
-            on_press: configscreen.add_number('5')
-        CustButton:
-            text: '6'
-            size_hint: 0.1125, 0.1875
-            pos: 655, 265
-            on_press: configscreen.add_number('6')
-        CustButton:
-            text: '7'
-            size_hint: 0.1125, 0.1875
-            pos: 465, 170
-            on_press: configscreen.add_number('7')
-        CustButton:
-            text: '8'
-            size_hint: 0.1125, 0.1875
-            pos: 560, 170
-            on_press: configscreen.add_number('8')
-        CustButton:
-            text: '9'
-            size_hint: 0.1125, 0.1875
-            pos: 655, 170
-            on_press: configscreen.add_number('9')
-        CustButton:
-            text: ','
-            size_hint: 0.1125, 0.1875
-            pos: 465, 75
-            on_press: configscreen.add_number(',')
-        CustButton:
-            text: '0'
-            size_hint: 0.1125, 0.1875
-            pos: 560, 75
-            on_press: configscreen.add_number('0')
-        CustButton:
-            text: 'DEL'
-            size_hint: 0.1125, 0.1875
-            pos: 655, 75
-            on_press: configscreen.delete_number()
-            
-        CustButton:
-            text: 'Zurück und nicht speichern'
-            size_hint: 0.5, 0.1
-            pos: 0, 0
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.transition.duration = 0.25
-                root.manager.current = 'startscreen'
-        CustButton: 
-            text: 'Zurück und speichern'
-            size_hint: 0.5, 0.1
-            pos: 400, 0
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.transition.duration = 0.25
-                root.manager.current = 'startscreen'
-                
-        
-                
-
-<SummaryScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 10
-        spacing: 10
-        Label:
-            text: 'Hier sollten alle gemessenen Filter Aufgelistet sein'
-            
-        CustButton:
-            text: 'Zurück'
-            size_hint: 1, 0.15
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.transition.duration = 0.25
-                root.manager.current = 'startscreen'
-                
-<PressureMeasurementScreen>:
-    id: press_measurement
-    status: status_press_meas
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 10
-        spacing: 10
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 15
-            size_hint: 1, 0.15
-            CustButton:
-                text: 'Start Druckmessung'
-                on_press: press_measurement.start_meassurement()
-            Label:
-                id: status_press_meas
-                size_hint: 0.5, 1
-                font_size: 20
-                text: 'Status: 0%'
-            Image:
-                id: image_press_meas
-                size_hint: 0.3, 1
-                source: 'picture/white.jpg'
-            
-        Label:
-            spacing: 10
-            id: label_press_meas
-            font_size: 20
-            text_size: 700, None
-            text: 'Die Messung wurde noch nicht gestartet. Um die Messung zu Starten muss der Knopf Start Druckmessung gedrückt werden. Es kann erst zur nächsten Messung gewechselt werden, sobald die Messung grün ist!'
-        
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint: 1, 0.15
-            CustButton:
-                text: 'Messung Abbrechen'
-                on_press:
-                    root.manager.transition.direction = 'right'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'startscreen'
-            
-            CustButton:
-                text: 'Nächste Messung'
-                on_press:
-                    press_measurement.next_page()
-
-<FlowMeasurementScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 10
-        spacing: 10
-        Label:
-            text: 'Hier sollte der Durchflussmessung durchgeführt werden'
-        
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint: 1, 0.15
-            CustButton:
-                text: 'Messung Abbrechen'
-                on_press:
-                    root.manager.transition.direction = 'right'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'startscreen'
-            
-            CustButton:
-                text: 'Messung Beenden'
-                on_press:
-                    root.manager.transition.direction = 'left'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'endmeasurement'
-                
-
-<EndMeasurementScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 10
-        spacing: 10
-        Label:
-            text: 'Hier sollten die gesamten Daten und der QRCode angezeigt werden'
-        
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 10
-            size_hint: 1, 0.15
-            CustButton:
-                text: 'QR Code Drucken'
-            
-            CustButton:
-                text: 'Messung Speichern und Beenden'
-                on_press:
-                    root.manager.transition.direction = 'right'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'startscreen'
-            
-            CustButton:
-                text: 'Messung löschen'
-                on_press:
-                    root.manager.transition.direction = 'right'
-                    root.manager.transition.duration = 0.25
-                    root.manager.current = 'startscreen'
 """)
+    
+#Load all the diffrent screen
+Builder.load_file('screenconfig/startscreen.kv')
+Builder.load_file('screenconfig/configscreen.kv')
+Builder.load_file('screenconfig/summaryscreen.kv')
+Builder.load_file('screenconfig/pressuremeasurementscreen.kv')
+Builder.load_file('screenconfig/flowmeasurementscreen.kv')
+Builder.load_file('screenconfig/endmeasurementscreen.kv')
 
 # Create a class for all screens in which you can include
 # helpful methods specific to that screen    
@@ -496,32 +96,59 @@ class EndMeasurementScreen(Screen):
     pass
 
 class ConfigScreen(Screen):
+    #This Variable has the info, which Checkbox is checked
+    selected_checkbox = None
     
-    #This is for the Radio Buttons, that has to be selected
-    min_fillHeight = ObjectProperty(False) 
-    max_fillHeight = ObjectProperty(True)
-    min_force = ObjectProperty(False)
-    max_force = ObjectProperty(False)
-    min_pressureMotor = ObjectProperty(False)
-    max_pressureMotor = ObjectProperty(False)
-    min_flow = ObjectProperty(False)
-    max_flow = ObjectProperty(False)
-    min_pressureloss = ObjectProperty(False)
-    max_pressureloss = ObjectProperty(False)
+    def checkbox_clicked(self, selectedcheckbox):
+        self.selected_checkbox = selectedcheckbox
     
     def textinput_selected(self, selectedti):
         textinputselected = selectedti
         self.add_number(textinputselected)
     
     def add_number(self, number):
-        if self.min_fillHeight == True:
+        if self.selected_checkbox == 'minfillheight':
             self.min_height.text += number
-        elif self.max_fillHeight == True:
+        elif self.selected_checkbox == 'maxfillheight':
             self.max_height.text += number
-    
+        elif self.selected_checkbox == 'minforce':
+            self.min_force.text += number
+        elif self.selected_checkbox == 'maxforce':
+            self.max_force.text += number
+        elif self.selected_checkbox == 'minpressuremotor':
+            self.min_pressuremotor.text += number 
+        elif self.selected_checkbox == 'maxpressuremotor':
+            self.max_pressuremotor.text += number
+        elif self.selected_checkbox == 'minflow':
+            self.min_flow.text += number
+        elif self.selected_checkbox == 'maxflow':
+            self.max_flow.text += number
+        elif self.selected_checkbox == 'minpressureloss':
+            self.min_pressureloss.text += number
+        elif self.selected_checkbox == 'maxpressureloss':
+            self.max_pressureloss.text += number     
+            
     def delete_number(self):
-        self.min_height.text = self.min_height.text[:-1]
-        
+        if self.selected_checkbox == 'minfillheight':
+            self.min_height.text = self.min_height.text[:-1]
+        elif self.selected_checkbox == 'maxfillheight':
+            self.max_height.text = self.max_height.text[:-1]
+        elif self.selected_checkbox == 'minforce':
+            self.min_force.text = self.min_force.text[:-1]
+        elif self.selected_checkbox == 'maxforce':
+            self.max_force.text = self.max_force.text[:-1]
+        elif self.selected_checkbox == 'minpressuremotor':
+            self.min_pressuremotor.text = self.min_pressuremotor.text[:-1] 
+        elif self.selected_checkbox == 'maxpressuremotor':
+            self.max_pressuremotor.text = self.max_pressuremotor.text[:-1]
+        elif self.selected_checkbox == 'minflow':
+            self.min_flow.text = self.min_flow.text[:-1]
+        elif self.selected_checkbox == 'maxflow':
+            self.max_flow.text = self.max_flow.text[:-1]
+        elif self.selected_checkbox == 'minpressureloss':
+            self.min_pressureloss.text = self.min_pressureloss.text[:-1]
+        elif self.selected_checkbox == 'maxpressureloss':
+            self.max_pressureloss.text = self.max_pressureloss.text[:-1]
 
 
 

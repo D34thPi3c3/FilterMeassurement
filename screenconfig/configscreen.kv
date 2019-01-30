@@ -1,0 +1,276 @@
+<ConfigScreen>:
+    id: configscreen
+    min_height: min_height
+    max_height: max_height
+    min_force: min_force
+    max_force: max_force
+    min_pressuremotor: min_pressuremotor
+    max_pressuremotor: max_pressuremotor
+    min_flow: min_flow
+    max_flow: max_flow
+    min_pressureloss: min_pressureloss
+    max_pressureloss: max_pressureloss
+    
+    FloatLayout:
+        ## Füll Höhe Einbabe
+        Label:
+            text: 'Füll Höhe:'
+            size_hint: 0.18, 0.1
+            pos: 0, 432
+            halign: 'right'
+        Label:
+            text: 'min'
+            size_hint: 0.075, 0.1 
+            pos: 130, 432 
+        TextInput:
+            id: min_height
+            text: '000'
+            size_hint: 0.1, 0.06
+            pos: 190, 440
+            multiline: False
+            on_text_validate: configscreen.textinput_selected('min_height')
+        Label:
+            text: 'max'
+            size_hint: 0.075, 0.1
+            pos: 290, 432
+        TextInput:
+            id: max_height
+            text: '004'
+            size_hint: 0.1, 0.06
+            pos: 350, 440
+            multiline: False
+            on_text_validate: configscreen.textinput_selected('max_height')
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 440
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('minfillheight')
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 440
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('maxfillheight')
+            
+        ## Kraft eingabe
+        Label:
+            text: 'Kraft [N]:'
+            size_hint: 0.18, 0.1
+            pos: 0, 384
+            halign: 'right'
+        Label:
+            text: 'min'
+            size_hint: 0.075, 0.1 
+            pos: 130, 384
+        TextInput:
+            id: min_force
+            text: '000'
+            size_hint: 0.1, 0.06
+            pos: 190, 392
+            valign: 'middle'
+        Label:
+            text: 'max'
+            size_hint: 0.075, 0.1
+            pos: 290, 384
+        TextInput:
+            id: max_force
+            text: '004'
+            size_hint: 0.1, 0.06
+            pos: 350, 392
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 392
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('minforce')
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 392
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('maxforce')
+        
+        ## Unterdruck Motor eingabe
+        Label:
+            text: 'Udruck Motor [mbar]:'
+            size_hint: 0.18, 0.1
+            pos: 0, 336
+            halign: 'right'
+        Label:
+            text: 'min'
+            size_hint: 0.075, 0.1 
+            pos: 130, 336
+        TextInput:
+            id: min_pressuremotor
+            text: '000'
+            size_hint: 0.1, 0.06
+            pos: 190, 344
+            valign: 'middle'
+        Label:
+            text: 'max'
+            size_hint: 0.075, 0.1
+            pos: 290, 336
+        TextInput:
+            id: max_pressuremotor
+            text: '004'
+            size_hint: 0.1, 0.06
+            pos: 350, 344
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 344
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('minpressuremotor')
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 344
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('maxpressuremotor')
+        
+        ## Durchfluss eingabe
+        Label:
+            text: 'Durchfluss [l/min]:'
+            size_hint: 0.18, 0.1
+            pos: 0, 288
+            halign: 'right'
+        Label:
+            text: 'min'
+            size_hint: 0.075, 0.1 
+            pos: 130, 288
+        TextInput:
+            id: min_flow
+            text: '000'
+            size_hint: 0.1, 0.06
+            pos: 190, 296
+            valign: 'middle'
+        Label:
+            text: 'max'
+            size_hint: 0.075, 0.1
+            pos: 290, 288
+        TextInput:
+            id: max_flow
+            text: '004'
+            size_hint: 0.1, 0.06
+            pos: 350, 296
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 296
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('minflow')
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 296
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('maxflow')
+        
+        ## Druckverlust eingabe
+        Label:
+            text: 'Druckverlust [mbar]:'
+            size_hint: 0.18, 0.1
+            pos: 0, 240
+            halign: 'right'
+        Label:
+            text: 'min'
+            size_hint: 0.075, 0.1 
+            pos: 130, 240
+        TextInput:
+            id: min_pressureloss
+            text: '000'
+            size_hint: 0.1, 0.06
+            pos: 190, 248
+            valign: 'middle'
+        Label:
+            text: 'max'
+            size_hint: 0.075, 0.1
+            pos: 290, 240
+        TextInput:
+            id: max_pressureloss
+            text: '004'
+            size_hint: 0.1, 0.06
+            pos: 350, 248
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 260, 248
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('minpressureloss')
+        CheckBox:
+            size_hint: 0.05, 0.07
+            pos: 420, 248
+            group: 'select_input'
+            on_active: configscreen.checkbox_clicked('maxpressureloss')
+            
+        ## Eingabe Feld
+        CustButton:
+            text: '1'
+            size_hint: 0.1125, 0.1875
+            pos: 465, 360
+            on_press: configscreen.add_number('1')
+        CustButton:
+            text: '2'
+            size_hint: 0.1125, 0.1875
+            pos: 560, 360
+            on_press: configscreen.add_number('2')
+        CustButton:
+            text: '3'
+            size_hint: 0.1125, 0.1875
+            pos: 655, 360
+            on_press: configscreen.add_number('3')
+        CustButton:
+            text: '4'
+            size_hint: 0.1125, 0.1875
+            pos: 465, 265
+            on_press: configscreen.add_number('4')
+        CustButton:
+            text: '5'
+            size_hint: 0.1125, 0.1875
+            pos: 560, 265
+            on_press: configscreen.add_number('5')
+        CustButton:
+            text: '6'
+            size_hint: 0.1125, 0.1875
+            pos: 655, 265
+            on_press: configscreen.add_number('6')
+        CustButton:
+            text: '7'
+            size_hint: 0.1125, 0.1875
+            pos: 465, 170
+            on_press: configscreen.add_number('7')
+        CustButton:
+            text: '8'
+            size_hint: 0.1125, 0.1875
+            pos: 560, 170
+            on_press: configscreen.add_number('8')
+        CustButton:
+            text: '9'
+            size_hint: 0.1125, 0.1875
+            pos: 655, 170
+            on_press: configscreen.add_number('9')
+        CustButton:
+            text: ','
+            size_hint: 0.1125, 0.1875
+            pos: 465, 75
+            on_press: configscreen.add_number(',')
+        CustButton:
+            text: '0'
+            size_hint: 0.1125, 0.1875
+            pos: 560, 75
+            on_press: configscreen.add_number('0')
+        CustButton:
+            text: 'DEL'
+            size_hint: 0.1125, 0.1875
+            pos: 655, 75
+            on_press: configscreen.delete_number()
+            
+        CustButton:
+            text: 'Zurück und nicht speichern'
+            size_hint: 0.5, 0.1
+            pos: 0, 0
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.transition.duration = 0.25
+                root.manager.current = 'startscreen'
+        CustButton: 
+            text: 'Zurück und speichern'
+            size_hint: 0.5, 0.1
+            pos: 400, 0
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.transition.duration = 0.25
+                root.manager.current = 'startscreen'
+                

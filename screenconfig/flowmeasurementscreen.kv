@@ -1,0 +1,25 @@
+<FlowMeasurementScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        Label:
+            text: 'Hier sollte der Durchflussmessung durchgeführt werden'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint: 1, 0.15
+            CustButton:
+                text: 'Messung Abbrechen'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'startscreen'
+            
+            CustButton:
+                text: 'Messung Beenden'
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'endmeasurement'

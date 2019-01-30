@@ -1,0 +1,28 @@
+<EndMeasurementScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        Label:
+            text: 'Hier sollten die gesamten Daten und der QRCode angezeigt werden'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint: 1, 0.15
+            CustButton:
+                text: 'QR Code Drucken'
+            
+            CustButton:
+                text: 'Messung Speichern und Beenden'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'startscreen'
+            
+            CustButton:
+                text: 'Messung löschen'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'startscreen'

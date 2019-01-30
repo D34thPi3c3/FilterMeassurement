@@ -1,0 +1,46 @@
+<PressureMeasurementScreen>:
+    id: press_measurement
+    status: status_press_meas
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 15
+            size_hint: 1, 0.15
+            CustButton:
+                text: 'Start Druckmessung'
+                on_press: press_measurement.start_meassurement()
+            Label:
+                id: status_press_meas
+                size_hint: 0.5, 1
+                font_size: 20
+                text: 'Status: 0%'
+            Image:
+                id: image_press_meas
+                size_hint: 0.3, 1
+                source: 'picture/white.jpg'
+            
+        Label:
+            spacing: 10
+            id: label_press_meas
+            font_size: 20
+            text_size: 700, None
+            text: 'Die Messung wurde noch nicht gestartet. Um die Messung zu Starten muss der Knopf Start Druckmessung gedrückt werden. Es kann erst zur nächsten Messung gewechselt werden, sobald die Messung grün ist!'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint: 1, 0.15
+            CustButton:
+                text: 'Messung Abbrechen'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.transition.duration = 0.25
+                    root.manager.current = 'startscreen'
+            
+            CustButton:
+                text: 'Nächste Messung'
+                on_press:
+                    press_measurement.next_page()
