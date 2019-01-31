@@ -27,7 +27,7 @@ from kivy.properties import ObjectProperty
 #platform: Check if Linux or Windows (because I Programmed on Windows)
 #smbus: For I2C
 #time: For time things as delay
-if platform.system() == 'Linux':
+if platform.system() != 'Windows':
     import smbus
     bus = smbus.SMBus(1)       
 import time
@@ -78,7 +78,7 @@ class PressureMeasurementScreen(Screen):
     startmeassurement = False
     def start_meassurement(self):
         if platform.system() == 'Linux':
-            number = bus.read_byte(self.ARDUINO_TEST_ADRESS)
+            number = self.bus.read_byte(ARDUINO_TEST_ADRESS)
             self.status.text = "Die Empfangenen Nummer ist: " + str(number)
         else:    
             self.status.text = "Status: 100%"
