@@ -10,7 +10,7 @@ Edit Date:
 #Import Backend Stuff because otherwise it doesnt work on Raspberry
 import os
 import platform
-if platform.system() == 'Linux':
+if platform.system() != 'Windows':
     os.environ['KIVY_GL_BACKEN'] = 'gl'
 else:
     os.environ['KIVY_GL_BACKEND'] = 'sdl2'
