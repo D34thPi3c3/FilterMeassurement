@@ -11,7 +11,7 @@ Edit Date:
 import os
 import platform
 if platform.system() != 'Windows':
-    os.environ['KIVY_GL_BACKEN'] = 'gl'
+    os.environ['KIVY_GL_BACKEND'] = 'gl'
 else:
     os.environ['KIVY_GL_BACKEND'] = 'sdl2'
 
@@ -33,6 +33,7 @@ if platform.system() == 'Linux':
 import time
 
 #I2C adressen Definieren
+ARDUINO_TEST_ADRESS = 0x04
 PRESSURE_MEAS_ADDRESS = 0x10
 FLOW_MEAS_ADRESS = 0x11
 START_MEAS = 0x0A
@@ -66,7 +67,7 @@ Builder.load_file('screenconfig/flowmeasurementscreen.kv')
 Builder.load_file('screenconfig/endmeasurementscreen.kv')
 
 # Create a class for all screens in which you can include
-# helpful methods specific to that screen    
+# helpful methods specific to that screen
 class StartScreen(Screen):
     pass
 
@@ -76,8 +77,9 @@ class SummaryScreen(Screen):
 class PressureMeasurementScreen(Screen):
     startmeassurement = False
     def start_meassurement(self):
-        if platform.system() == 'nux':
-            bus.write_byte()
+        if platform.system() == 'Linux':
+            number = bus.read_byte(self.ARDUINO_TEST_ADRESS)
+            self.status.text = "Die Empfangenen Nummer ist: " + str(number)
         else:    
             self.status.text = "Status: 100%"
             self.startmeassurement = True
