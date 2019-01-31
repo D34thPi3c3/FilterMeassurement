@@ -78,7 +78,7 @@ class PressureMeasurementScreen(Screen):
     startmeassurement = False
     def start_meassurement(self):
         if platform.system() == 'Linux':
-            number = self.bus.read_byte(ARDUINO_TEST_ADRESS)
+            number = bus.read_byte(ARDUINO_TEST_ADRESS)
             self.status.text = "Die Empfangenen Nummer ist: " + str(number)
         else:    
             self.status.text = "Status: 100%"
